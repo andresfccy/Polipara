@@ -36,6 +36,21 @@ public class Polipara implements Serializable {
      * Lista de equipos que participan en la copa Polipara.
      */
     public ArrayList<Equipo> equipos;
+    
+    /**
+     * Lista de equipos que participan en la copa Polipara.
+     */
+    public ArrayList<Tecnico> tecnicos;
+    
+    /**
+     * Lista de equipos que participan en la copa Polipara.
+     */
+    public ArrayList<Propietario> propietarios;
+    
+    /**
+     * Lista de equipos que participan en la copa Polipara.
+     */
+    public ArrayList<PAuxiliar> auxiliares;
 
     // ---------------------------------------------------------------------------------------------------------
     // Constructores
