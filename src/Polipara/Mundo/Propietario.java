@@ -1,3 +1,5 @@
+package Polipara.Mundo;
+
 
 
 public class Propietario extends Persona

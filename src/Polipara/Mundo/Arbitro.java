@@ -1,3 +1,5 @@
+package Polipara.Mundo;
+
 
 public class Arbitro extends Persona {
       private int P_Pitados;
