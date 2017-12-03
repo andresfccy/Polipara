@@ -23,18 +23,24 @@ public class Polipara implements Serializable {
     // ---------------------------------------------------------------------------------------------------------
     // Atributos Privados
     // ---------------------------------------------------------------------------------------------------------
+    /**
+     * Atributo que modela la ruta en el proyecto del archivo de serialización de la copa.
+     */
     private String serializacionUrl = "src/Polipara/Persistencia/polipara.ser";
 
     // ---------------------------------------------------------------------------------------------------------
     // Atributos Públicos
     // ---------------------------------------------------------------------------------------------------------
     /**
-     * Lista de equipos que participarán en la copa Polipara
+     * Lista de equipos que participan en la copa Polipara.
      */
     public ArrayList<Equipo> equipos;
 
+    // ---------------------------------------------------------------------------------------------------------
+    // Constructores
+    // ---------------------------------------------------------------------------------------------------------
     /**
-     * Constructor de la clase principal
+     * Constructor de la clase principal.
      */
     public Polipara() {
         // Iniciar el programa cargando el archivo de propiedades si existe.
@@ -49,81 +55,86 @@ public class Polipara implements Serializable {
             }
         } else {
             this.iniciarCopa();
-            JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios realizados?");
-            this.serializar();
+        }
+    }
+    // ---------------------------------------------------------------------------------------------------------
+    // Métodos
+    // ---------------------------------------------------------------------------------------------------------
+    /**
+     * Método que inicializa las listas de la copa y muestra los menús de interacciones con el usuario.
+     */
+    public void iniciarCopa() {
+        // Inicializar listas
+        equipos = new ArrayList<Equipo>();
+
+        int op = -1;
+        while (op != 0) {
+            // Interacción inicial con el usuario
+            String seleccion = JOptionPane.showInputDialog(null, "¡Bienvenido a la copa Polipara!\n"
+                    + "A continuación se lista una serie de opciones de las que tendrás que escoger una y escribir el número de la opción en la caja de texto.\n\n"
+                    + "1. Opciones de equipos.\n"
+                    + "2. Opciones de árbitros.\n"
+                    + "3. Opciones administrativas.", "Menú principal", JOptionPane.QUESTION_MESSAGE);
+            op = Integer.parseInt(seleccion);
+            switch (op) {
+                case 1:
+                    // Opciones EQUIPOS
+                    break;
+                case 2:
+                    // Opciones ÁRBITROS
+                    break;
+                case 3:
+                    // Opciones ADMINISTRATIVAS
+                    break;
+                case 0:
+                    // Salida
+                    int guardar = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios realizados?");
+                    switch (guardar) {
+                        case 0:
+                            // Sí
+                            this.serializar();
+                            break;
+                        case 1:
+                            // No
+                            JOptionPane.showMessageDialog(null, "El programa cerrará sin guardar los cambios", "¡Hasta pronto!", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        default:
+                            // Cancelar
+                            op = -1;
+                            break;
+                    }
+                    break;
+            }
         }
 
-//        Scanner scanner = new Scanner(System.in);
-//        int op = 0;
-//
-//        while (op != 6) {
-//            System.out.println("1. Registrar Popietario");
-//            System.out.println("2. Registrar Tecnico");
-//            System.out.println("3. Registrar Arbitro");
-//            System.out.println("4. Registrar Personal Auxiliar");
-//            System.out.println("5. Registrar Jugador");
-//            System.out.println("6. Salir");
-//
-//            System.out.println("introduzca un numero segun el proceso que desea realizar : ");
-//
-//            op = scanner.nextInt();
-//
-//            switch (op) {
-//                case 1:
-//                    Propietario propietario1 = new Propietario();
-//                    propietario1.introducir_datos_personales();
-//                    propietario1.introducir_equipo();
-//                    propietario1.mostrar_datos_personales();
-//                    propietario1.mostrar_datos_propietario();
-//
-//                    break;
-//
-//                case 2:
-//                    Tecnico tecnico1 = new Tecnico();
-//                    tecnico1.introducir_datos_personales();
-//                    tecnico1.introducir_numero_campeonatos_ganados();
-//                    tecnico1.introducir_numero_campeonatos_perdidos();
-//                    tecnico1.mostrar_datos_personales();
-//                    tecnico1.mostrar_datos_tecnico();
-//
-//                    break;
-//
-//                case 3:
-//                    Arbitro arbitro1 = new Arbitro();
-//                    arbitro1.introducir_datos_personales();
-//                    arbitro1.introducir_partidos_pitados();
-//                    arbitro1.mostrar_datos_personales();
-//                    arbitro1.mostrar_datos_arbitro();
-//
-//                    break;
-//
-//                case 4:
-//                    P_Auxiliar auxiliar1 = new P_Auxiliar();
-//                    auxiliar1.introducir_datos_personales();
-//                    auxiliar1.introducir_rol();
-//                    auxiliar1.mostrar_datos_personales();
-//                    auxiliar1.mostrar_datos_auxiliar();
-//
-//                    break;
-//
-//                case 5:
-//                    Jugador jugador1 = new Jugador();
-//                    jugador1.introducir_datos_personales();
-//                    jugador1.introducir_posicion();
-//                    jugador1.mostrar_datos_personales();
-//                    jugador1.mostrar_datos_jugador();
-//
-//                    break;
-//
-//            }
-//        }
     }
 
-    private void iniciarCopa() {
-        // Inicializar la lista de equipos que jugarán en la copa
-        equipos = new ArrayList<Equipo>();
+    /**
+     * Método que muestra el menú de opciones para equipos, en este menú se puede:
+     * Agregar y editar equipos;
+     * Agregar y editar personal relacionado con los equipos (Propietario, Técnico, Jugadores, Personal auxiliar).
+     */
+    private void menuEquipos(){
+        
     }
-
+    
+    /**
+     * Método que muestra el menú de opciones para árbitros, en este menú se puede:
+     * Agregar y editar árbitros.
+     */
+    private void menuArbitros(){
+        
+    }
+    
+    /**
+     * Método que muestra el menú de opciones administrativas de la copa, en este menú se puede:
+     * Calcular recaudos y resultados;
+     * Registrar las interacciones entre equipos, jugadores, árbitros;
+     * Finalizar la copa.
+     */
+    private void menuAdministrativo(){
+        
+    }
     // ---------------------------------------------------------------------------------------------------------
     // Métodos Auxiliares
     // ---------------------------------------------------------------------------------------------------------
@@ -160,7 +171,7 @@ public class Polipara implements Serializable {
     }
 
     /**
-     * Método que se encarga de borrar el archivo de serialización
+     * Método que se encarga de borrar el archivo de serialización.
      */
     private void borrarSerializacion() {
         try {
@@ -194,7 +205,7 @@ public class Polipara implements Serializable {
     // Main
     // ---------------------------------------------------------------------------------------------------------
     /**
-     * Método principal, es la entrada al momento de correr el proyecto
+     * Método principal, es la entrada al momento de correr el proyecto.
      *
      * @param args
      */
