@@ -61,8 +61,7 @@ public class Polipara implements Serializable {
     public Polipara() {
         // Iniciar el programa cargando el archivo de propiedades si existe.
 
-        if (this.validarSerializacion()) 
-        { 
+        if (this.validarSerializacion())  {   
             int response = JOptionPane.showConfirmDialog(null, "Hay una versión anterior de una copa,\n"
                     + "¿Desea cargar esa versión? (Al seleccionar \"No\", se eliminará el avance anterior y se cargará una copa nueva.)");
             if (response == 0) {
