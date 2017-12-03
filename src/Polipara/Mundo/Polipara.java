@@ -201,5 +201,4 @@ public class Polipara implements Serializable {
     public static void main(String[] args) {
         new Polipara();
     }
-
 }
