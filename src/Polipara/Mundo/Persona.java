@@ -1,3 +1,5 @@
+package Polipara.Mundo;
+
 import java.util.Scanner; 
 
 public class Persona 
