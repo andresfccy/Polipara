@@ -24,7 +24,8 @@ public class Polipara implements Serializable {
     // Atributos Privados
     // ---------------------------------------------------------------------------------------------------------
     /**
-     * Atributo que modela la ruta en el proyecto del archivo de serialización de la copa.
+     * Atributo que modela la ruta en el proyecto del archivo de serialización
+     * de la copa.
      */
     private String serializacionUrl = "src/Polipara/Persistencia/polipara.ser";
 
@@ -57,11 +58,13 @@ public class Polipara implements Serializable {
             this.iniciarCopa();
         }
     }
+
     // ---------------------------------------------------------------------------------------------------------
     // Métodos
     // ---------------------------------------------------------------------------------------------------------
     /**
-     * Método que inicializa las listas de la copa y muestra los menús de interacciones con el usuario.
+     * Método que inicializa las listas de la copa y muestra los menús de
+     * interacciones con el usuario.
      */
     public void iniciarCopa() {
         // Inicializar listas
@@ -71,20 +74,27 @@ public class Polipara implements Serializable {
         while (op != 0) {
             // Interacción inicial con el usuario
             String seleccion = JOptionPane.showInputDialog(null, "¡Bienvenido a la copa Polipara!\n"
+                    // Opciones
                     + "A continuación se lista una serie de opciones de las que tendrás que escoger una y escribir el número de la opción en la caja de texto.\n\n"
                     + "1. Opciones de equipos.\n"
                     + "2. Opciones de árbitros.\n"
-                    + "3. Opciones administrativas.", "Menú principal", JOptionPane.QUESTION_MESSAGE);
+                    + "3. Opciones administrativas.\n"
+                    + "0. Salir",
+                    // Título y tipo de mensaje.
+                    "Menú principal", JOptionPane.QUESTION_MESSAGE);
             op = Integer.parseInt(seleccion);
             switch (op) {
                 case 1:
                     // Opciones EQUIPOS
+                    this.menuEquipos();
                     break;
                 case 2:
                     // Opciones ÁRBITROS
+                    this.menuArbitros();
                     break;
                 case 3:
                     // Opciones ADMINISTRATIVAS
+                    this.menuAdministrativo();
                     break;
                 case 0:
                     // Salida
@@ -110,31 +120,48 @@ public class Polipara implements Serializable {
     }
 
     /**
-     * Método que muestra el menú de opciones para equipos, en este menú se puede:
-     * Agregar y editar equipos;
-     * Agregar y editar personal relacionado con los equipos (Propietario, Técnico, Jugadores, Personal auxiliar).
+     * Método que muestra el menú de opciones para equipos, en este menú se
+     * puede: Agregar y editar equipos; Agregar y editar personal relacionado
+     * con los equipos (Propietario, Técnico, Jugadores, Personal auxiliar).
      */
-    private void menuEquipos(){
-        
+    private void menuEquipos() {
+        String selEquipos = JOptionPane.showInputDialog(null, ""
+                // Opciones
+                + "1. Agregar equipo.\n"
+                + "2. Editar equipo.\n",
+                // Título y tipo de mensaje.
+                "Menú de equipos", JOptionPane.QUESTION_MESSAGE);
+        int op = Integer.parseInt(selEquipos);
+        switch (op) {
+            case 1:
+                
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
     }
-    
+
     /**
-     * Método que muestra el menú de opciones para árbitros, en este menú se puede:
-     * Agregar y editar árbitros.
+     * Método que muestra el menú de opciones para árbitros, en este menú se
+     * puede: Agregar y editar árbitros.
      */
-    private void menuArbitros(){
-        
+    private void menuArbitros() {
+        String selEquipos = JOptionPane.showInputDialog(null, "Opciones del menú...", "Menú de árbitros", JOptionPane.QUESTION_MESSAGE);
+
     }
-    
+
     /**
-     * Método que muestra el menú de opciones administrativas de la copa, en este menú se puede:
-     * Calcular recaudos y resultados;
-     * Registrar las interacciones entre equipos, jugadores, árbitros;
-     * Finalizar la copa.
+     * Método que muestra el menú de opciones administrativas de la copa, en
+     * este menú se puede: Calcular recaudos y resultados; Registrar las
+     * interacciones entre equipos, jugadores, árbitros; Finalizar la copa.
      */
-    private void menuAdministrativo(){
-        
+    private void menuAdministrativo() {
+        String selEquipos = JOptionPane.showInputDialog(null, "Opciones del menú...", "Menú administrativo", JOptionPane.QUESTION_MESSAGE);
+
     }
+
     // ---------------------------------------------------------------------------------------------------------
     // Métodos Auxiliares
     // ---------------------------------------------------------------------------------------------------------

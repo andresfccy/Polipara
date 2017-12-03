@@ -1,12 +1,12 @@
 package Polipara.Mundo;
 
 
-public class P_Auxiliar extends Persona
+public class PAuxiliar extends Persona
 {
     private int Rol;
     
 
-public P_Auxiliar()
+public PAuxiliar()
 {
 System.out.println("Nuevo Personal Auxiliar");
 }
