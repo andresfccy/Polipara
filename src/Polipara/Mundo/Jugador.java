@@ -1,24 +1,33 @@
 package Polipara.Mundo;
 
-
 public class Jugador extends Persona {
-    
-    private int posicion;
-    
 
-public Jugador()
-{
-System.out.println("Nuevo Jugador");
-}
-public void introducir_posicion()
-{
-System.out.print("Introduzca en que posicion juega: ");
-posicion=reader.nextInt();
-}
+    public final static int HABILITADO = 0;
+    public final static int LESIONADO = 1;
+    public final static int SUSPENDIDO = 2;
 
-public void mostrar_datos_jugador()
-{
-System.out.println("Usted juega en la posicion de  : "+posicion); 
+    private int estado;
+    private String posicion;
 
-}
+    public Jugador(int estado, String posicion, String pNombre, String pApellido, Ciudad pCiudad, int Identificacion) {
+        super(pNombre, pApellido, pCiudad, Identificacion);
+        this.estado = estado;
+        this.posicion = posicion;
+    }    
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public String getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = posicion;
+    }
 }

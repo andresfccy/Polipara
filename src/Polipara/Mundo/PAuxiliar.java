@@ -1,24 +1,21 @@
 package Polipara.Mundo;
 
+public class PAuxiliar extends Persona {
 
-public class PAuxiliar extends Persona
-{
     private int Rol;
+
+    public PAuxiliar(int Rol, String pNombre, String pApellido, Ciudad pCiudad, int pIdentificación) {
+        super(pNombre, pApellido, pCiudad, pIdentificación);
+        this.Rol = Rol;
+    }
+
+    public int getRol() {
+        return Rol;
+    }
+
+    public void setRol(int Rol) {
+        this.Rol = Rol;
+    }
+
     
-
-public PAuxiliar()
-{
-System.out.println("Nuevo Personal Auxiliar");
-}
-public void introducir_rol()
-{
-System.out.print("Introduzca A que se dedica o Rol que cumple en el equipo: ");
-Rol=reader.nextInt();
-}
-
-public void mostrar_datos_auxiliar()
-{
-System.out.println("Usted es : "+Rol); 
-
-}
 }

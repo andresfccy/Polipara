@@ -1,31 +1,40 @@
 package Polipara.Mundo;
 
-import java.util.Scanner; 
+import java.util.Scanner;
 
-public class Persona 
-{
-protected Scanner reader;
-protected String nombre;
-protected String apellido;
-protected String nacionalidad;
+public class Persona {
+    protected String nombre;
+    protected String apellido;
+    protected int identificacion;
+    protected Ciudad ciudad;
 
-public Persona()
-{
-reader=new Scanner(System.in);
-}
-public void introducir_datos_personales()
-{
-System.out.print("Introduzca nombre: ");
-nombre=reader.next();
-System.out.print("Introduzca apellido: ");
-apellido=reader.next();
-System.out.print("Introduzca nacionalidad: ");
-nacionalidad=reader.next();
+    public Persona(String pNombre, String pApellido, Ciudad pCiudad, int Identificacion) {
+        this.nombre = pNombre;
+        this.apellido = pApellido;
+        this.ciudad = pCiudad;
+    }
 
-}
-public void mostrar_datos_personales(){
-System.out.println("Su Nombre es : "+nombre);
-System.out.println("Su Apellido es : "+apellido);
-System.out.println("Su nacionalidad es : "+nacionalidad);
-}
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Ciudad getNacionalidad() {
+        return ciudad;
+    }
+
+    public void setNacionalidad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
 }

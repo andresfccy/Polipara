@@ -20,27 +20,27 @@ public class Equipo implements Serializable{
     /**
      * Atributo que modela el propietario del equipo
      */
-    public Propietario propietario;
+    private Propietario propietario;
     
     /**
      * Atributo que modela el técnico del equipo
      */
-    public Tecnico tecnico;
+    private Tecnico tecnico;
     
     /**
      * Atributo que modela el nombre del equipo
      */
-    public String nombre;
+    private String nombre;
     
     /**
      * Atributo que modela la lista de jugadores del equipo
      */
-    public ArrayList<Jugador> jugadores;
+    private ArrayList<Jugador> jugadores;
     
     /**
      * Atributo que modela la lista de jugadores del equipo
      */
-    public ArrayList<PAuxiliar> auxiliares;
+    private ArrayList<PAuxiliar> auxiliares;
     
     // ---------------------------------------------------------------------------------------------------------
     // Constructores
@@ -57,6 +57,14 @@ public class Equipo implements Serializable{
     // Getters y Setters
     // ---------------------------------------------------------------------------------------------------------
     /**
+     * Método que obtiene el nombre del equipo
+     * @return String - El nombre del equipo
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
      * Método que obtiene el propietario del equipo
      * @return Propietario - Propietario del equipo
      */
@@ -64,6 +72,15 @@ public class Equipo implements Serializable{
         return propietario;
     }
 
+    /**
+     * Método que cambia el nombre del equipo
+     * @param nombre - String no nulo que iene que venir verificado para que no sea duplicado
+     *                 de un equipo existente.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }    
+    
     /**
      * Método que cambia el propietario del equipo
      * @param propietario - Objeto no nulo que modela el propietario del equipo

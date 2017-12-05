@@ -1,23 +1,21 @@
 package Polipara.Mundo;
 
-
 public class Arbitro extends Persona {
-      private int P_Pitados;
+
+    private int partidosPitados;
+
+    public Arbitro(int partidosPitados, String pNombre, String pApellido, Ciudad pCiudad, int pIdentificación) {
+        super(pNombre, pApellido, pCiudad, pIdentificación);
+        this.partidosPitados = partidosPitados;
+    }
+
+    public int getPartidosPitados() {
+        return partidosPitados;
+    }
+
+    public void setPartidosPitados(int partidosPitados) {
+        this.partidosPitados = partidosPitados;
+    }
+
     
-
-public Arbitro()
-{
-System.out.println("Nuevo Arbitro");
-}
-public void introducir_partidos_pitados()
-{
-System.out.print("Introduzca cuantos cuantos partidos ha pitados: ");
-P_Pitados=reader.nextInt();
-}
-
-public void mostrar_datos_arbitro()
-{
-System.out.println("Los partidos que usted ha pitado son: "+P_Pitados); 
-
-}
 }

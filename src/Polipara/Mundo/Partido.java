@@ -1,51 +1,77 @@
-
 package Polipara.Mundo;
+
+import java.util.Date;
 import java.util.Scanner;
 
-public class Partido 
-{
-private Scanner reader;
-private String anfitrion;
-private String visitante;
-private int gol_anfitrion;
-private int gol_visitante;
+public class Partido {
+    
+    private Equipo anfitrion;
+    private Equipo visitante;
+    private int golAnfitrion;
+    private int golVisitante;
+    private Date fechaPartido;
 
-public Partido()
-{
-reader=new Scanner(System.in);
-}
-public void introducir_datos_partido()
-{
-System.out.print("Introduzca el nombre del equipo anfitrion: ");
-anfitrion=reader.next();
-System.out.print("Introduzca el nombre del equipo visitante: "); 
-visitante=reader.next();
-System.out.print("Introduzca el numero de goles del equipo anfitrion: "); 
-gol_anfitrion=reader.nextInt();
-System.out.print("Introduzca el numero de goles del equipo visitante: "); 
-gol_visitante=reader.nextInt();
-
-
-}
-public void mostrar_datos_estado(){
-System.out.println("El equipo Anfitrion es : "+anfitrion);
-System.out.println("El equipo Visitante es : "+visitante);
-
-if(gol_anfitrion > gol_visitante)
-{
-    System.out.println("El equipo Anfitrion es el ganador con : "+gol_anfitrion);
-    System.out.println("El equipo Visitante es el perdedor con : "+gol_visitante);
-
-    if(gol_visitante==gol_anfitrion)
-    {
-         System.out.println("Los equipos quedaron empatados: "+gol_anfitrion+"-"+gol_visitante);
+    public Partido(Equipo anfitrion, Equipo visitante, int golAnfitrion, int golVisitante, Date fechaPartido) {
+        this.anfitrion = anfitrion;
+        this.visitante = visitante;
+        this.golAnfitrion = golAnfitrion;
+        this.golVisitante = golVisitante;
+        this.fechaPartido = fechaPartido;
     }
-    else
-    {
-        System.out.println("El equipo Visitante es el ganador con : "+gol_visitante); 
-        System.out.println("El equipo Anfitrion es el perdedor con : "+gol_anfitrion);
+
+    public Date getFechaPartido() {
+        return fechaPartido;
     }
-       
+
+    public void setFechaPartido(Date fechaPartido) {
+        this.fechaPartido = fechaPartido;
     }
-} 
+    
+    public Equipo getAnfitrion() {
+        return anfitrion;
+    }
+
+    public void setAnfitrion(Equipo anfitrion) {
+        this.anfitrion = anfitrion;
+    }
+
+    public Equipo getVisitante() {
+        return visitante;
+    }
+
+    public void setVisitante(Equipo visitante) {
+        this.visitante = visitante;
+    }
+
+    public int getGolAnfitrion() {
+        return golAnfitrion;
+    }
+
+    public void setGolAnfitrion(int golAnfitrion) {
+        this.golAnfitrion = golAnfitrion;
+    }
+
+    public int getGolVisitante() {
+        return golVisitante;
+    }
+
+    public void setGolVisitante(int golVisitante) {
+        this.golVisitante = golVisitante;
+    }
+    
+    public void mostrarDatosPartido() {
+        String message = "";
+        message += "El equipo anfitrión es: " + this.getAnfitrion().getNombre() + "\n";
+        message += "El equipo visitante es: " + this.getVisitante().getNombre() + "\n\n";
+
+        if (golAnfitrion > golVisitante) {
+            message += "El equipo Anfitrion es el ganador con : " + golAnfitrion + " goles\n";
+            message += "El equipo Visitante es el perdedor con : " + golVisitante + " goles\n";
+        } else if(golAnfitrion < golVisitante){
+            message += "El equipo Visitante es el ganador con : " + golVisitante + " goles\n";
+            message += "El equipo Anfitrión es el perdedor con : " + golAnfitrion + " goles\n";
+        } else {
+            message += "Los equipos quedaron empatados a: " + golAnfitrion + "-" + golVisitante + " goles";
+        }
+    }
 }
