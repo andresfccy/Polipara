@@ -2,6 +2,7 @@ package Polipara.Mundo;
 
 public class Jugador extends Persona {
 
+    public final static int SIN_EQUIPO = -1;
     public final static int HABILITADO = 0;
     public final static int LESIONADO = 1;
     public final static int SUSPENDIDO = 2;

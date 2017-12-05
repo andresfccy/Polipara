@@ -74,4 +74,8 @@ public class Partido {
             message += "Los equipos quedaron empatados a: " + golAnfitrion + "-" + golVisitante + " goles";
         }
     }
+    
+    public String toString(){
+        return this.getFechaPartido().toString() + " : " + this.getAnfitrion() + " vs " + this.getVisitante();
+    }
 }

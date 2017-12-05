@@ -2,18 +2,18 @@ package Polipara.Mundo;
 
 public class PAuxiliar extends Persona {
 
-    private int Rol;
+    private String Rol;
 
-    public PAuxiliar(int Rol, String pNombre, String pApellido, Ciudad pCiudad, int pIdentificación) {
+    public PAuxiliar(String Rol, String pNombre, String pApellido, Ciudad pCiudad, int pIdentificación) {
         super(pNombre, pApellido, pCiudad, pIdentificación);
         this.Rol = Rol;
     }
 
-    public int getRol() {
+    public String getRol() {
         return Rol;
     }
 
-    public void setRol(int Rol) {
+    public void setRol(String Rol) {
         this.Rol = Rol;
     }
 
