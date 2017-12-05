@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Polipara implements Serializable {
@@ -49,9 +51,9 @@ public class Polipara implements Serializable {
     public ArrayList<Persona> jugadores;
 
     public ArrayList<Ciudad> ciudades;
-    
+
     public ArrayList<Partido> partidos;
-    
+
     public ArrayList<Arbitro> arbitros;
 
     // ---------------------------------------------------------------------------------------------------------
@@ -267,8 +269,54 @@ public class Polipara implements Serializable {
      * interacciones entre equipos, jugadores, árbitros; Finalizar la copa.
      */
     private void menuAdministrativo() {
-        String selEquipos = JOptionPane.showInputDialog(null, "Opciones del menú...", "Menú administrativo", JOptionPane.QUESTION_MESSAGE);
-
+        int op = -1;
+        while (op != 0) {
+            // Interacción inicial con el usuario
+            String seleccion = JOptionPane.showInputDialog(null, ""
+                    // Opciones
+                    + "A continuación se listan algunas opciones administrativas del sistema.\n\n"
+                    + "1. Opciones de partidos.\n"
+                    + "2. Listar jugadores con tarjetas amarillas.\n"
+                    + "3. Listar jugadores con tarjetas rojas.\n"
+                    + "4. Listar jugadores lesionados.\n"
+                    + "5. Listar jugadores suspendidos.\n"
+                    + "6. Calcular recaudo entre dos fechas.\n"
+                    + "7. Calcular recaudo por publicidad entre dos fechas.\n"
+                    + "0. Salir",
+                    // Título y tipo de mensaje.
+                    "Menú administrativo", JOptionPane.QUESTION_MESSAGE);
+            op = Integer.parseInt(seleccion);
+            switch (op) {
+                case 1:
+                    // Opciones PROPIETARIOS
+                    this.menuPartidos();
+                    break;
+                case 2:
+                    // Opciones TECNICOS
+                    //this.listarJugadoresAmarillas();
+                    break;
+                case 3:
+                    // Opciones Jugadores
+                    //this.listarJugadoresRojas();
+                    break;
+                case 4:
+                    // Opciones AUXILIARES
+                    //this.listarJugadoresLesionados();
+                    break;
+                case 5:
+                    // Opciones ÁRBITROS
+                    //this.listarJugadoresSuspendidos();
+                    break;
+                case 6:
+                    // Opciones ÁRBITROS
+                    //this.calcularRecaudoEntreFechas();
+                    break;
+                case 7:
+                    // Opciones ÁRBITROS
+                    //this.calcularRecaudoPublicidadEntreFechas();
+                    break;
+            }
+        }
     }
 
     /**
@@ -386,7 +434,7 @@ public class Polipara implements Serializable {
                 case 6:
                     Jugador jugador6 = this.seleccionarJugador();
                     int nuevoEstado = this.seleccionarEstado();
-                    
+
                     jugador6.setEstado(nuevoEstado);
                     break;
                 default:
@@ -486,8 +534,8 @@ public class Polipara implements Serializable {
             }
         }
     }
-    
-    private void menuTecnicos(){
+
+    private void menuTecnicos() {
         int op = -1;
         while (op != 0) {
             String selTecnicos = JOptionPane.showInputDialog(null, ""
@@ -519,7 +567,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String identificacionTecnico = JOptionPane.showInputDialog(null,
                             "Introduce la identificación del nuevo técnico: ",
                             "Creación de técnico",
@@ -535,7 +583,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String campGanadosTecnico = JOptionPane.showInputDialog(null,
                             "Introduce los campeonatos ganados del técnico: ",
                             "Creación de técnico",
@@ -551,7 +599,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String campPerdidosTecnico = JOptionPane.showInputDialog(null,
                             "Introduce los campeonatos perdidos del técnico: ",
                             "Creación de técnico",
@@ -569,7 +617,7 @@ public class Polipara implements Serializable {
                     }
 
                     ciudadTecnico = this.seleccionarCiudad();
-                    
+
                     Tecnico nuevo = new Tecnico(campGanadosTecnicoNTecnico, campPerdidosTecnicoNTecnico, nombreTecnico, apellidoTecnico, ciudadTecnico, identificacionNTecnico);
 
                     tecnicos.add(nuevo);
@@ -612,7 +660,7 @@ public class Polipara implements Serializable {
         }
     }
 
-    private void menuAuxiliares(){
+    private void menuAuxiliares() {
         int op = -1;
         while (op != 0) {
             String selAuxiliares = JOptionPane.showInputDialog(null, ""
@@ -644,7 +692,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String identificacionAuxiliar = JOptionPane.showInputDialog(null,
                             "Introduce la identificación del nuevo auxiliar: ",
                             "Creación de auxiliar",
@@ -660,7 +708,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String rolAuxiliar = JOptionPane.showInputDialog(null,
                             "Introduce el rol del nuevo auxiliar: ",
                             "Creación de auxiliar",
@@ -671,7 +719,7 @@ public class Polipara implements Serializable {
                     }
 
                     ciudadAuxiliar = this.seleccionarCiudad();
-                    
+
                     PAuxiliar nuevo = new PAuxiliar(rolAuxiliar, nombreAuxiliar, apellidoAuxiliar, ciudadAuxiliar, identificacionNAuxiliar);
 
                     auxiliares.add(nuevo);
@@ -713,8 +761,8 @@ public class Polipara implements Serializable {
             }
         }
     }
-    
-    private void menuArbitros(){
+
+    private void menuArbitros() {
         int op = -1;
         while (op != 0) {
             String selArbitros = JOptionPane.showInputDialog(null, ""
@@ -746,7 +794,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String identificacionArbitro = JOptionPane.showInputDialog(null,
                             "Introduce la identificación del nuevo árbitro: ",
                             "Creación de árbitro",
@@ -762,7 +810,7 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    
+
                     String partidosPitados = JOptionPane.showInputDialog(null,
                             "Introduce el rol del nuevo árbitro: ",
                             "Creación de árbitro",
@@ -780,7 +828,7 @@ public class Polipara implements Serializable {
                     }
 
                     ciudadArbitro = this.seleccionarCiudad();
-                    
+
                     Arbitro nuevo = new Arbitro(partidosPitadosNAuxiliar, nombreArbitro, apellidoArbitro, ciudadArbitro, identificacionNArbitro);
 
                     arbitros.add(nuevo);
@@ -822,7 +870,54 @@ public class Polipara implements Serializable {
             }
         }
     }
-    
+
+    private void menuPartidos() {
+        int op = -1;
+        while (op != 0) {
+            String selArbitros = JOptionPane.showInputDialog(null, ""
+                    // Opciones
+                    + "1. Programar partido.\n"
+                    + "2. Registrar resultados de un partido programado.\n"
+                    + "3. Ver resultados de un partido.\n"
+                    + "0. Menú anterior",
+                    // Título y tipo de mensaje.
+                    "Menú de partidos", JOptionPane.QUESTION_MESSAGE);
+            op = Integer.parseInt(selArbitros);
+            switch (op) {
+                case 1:
+                    Date fechaDatePartido = null;
+                    JOptionPane.showMessageDialog(null, "A continuación se listarán los equipos, selecciona el equipo anfitrión.");
+                    Equipo anfitrion = seleccionaEquipo();
+
+                    JOptionPane.showMessageDialog(null, "A continuación se listarán los equipos, selecciona el equipo visitante.");
+                    Equipo visitante = seleccionaEquipo();
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaPartido = JOptionPane.showInputDialog(null, "Introduce la fecha del encuentro (dd/mm/aaaa):");
+                    
+                    try {
+                        fechaDatePartido = formatter.parse(fechaPartido);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ocurrió un problema al intentar guardar la fecha del encuentro.");
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    
+                    Partido nuevo = new Partido(anfitrion, visitante, 0, 0, fechaDatePartido);
+                    
+                    JOptionPane.showMessageDialog(null, "¡Partido programado exitosamente!");
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+            }
+        }
+    }
+
     private Jugador seleccionarJugador() {
         if (jugadores.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay jugadores registrados.");
@@ -924,7 +1019,7 @@ public class Polipara implements Serializable {
         return null;
     }
 
-    private Propietario seleccionarPropietario(){
+    private Propietario seleccionarPropietario() {
         if (propietarios.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay propietarios registrados.");
             return null;
@@ -943,8 +1038,8 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-    
-    private PAuxiliar seleccionarAuxiliar(){
+
+    private PAuxiliar seleccionarAuxiliar() {
         if (auxiliares.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay auxiliares registrados.");
             return null;
@@ -963,8 +1058,8 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-    
-    private Partido seleccionarPartido(){
+
+    private Partido seleccionarPartido() {
         if (partidos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay partidos registrados.");
             return null;
@@ -983,7 +1078,7 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-    
+
     private int seleccionarEstado() {
         String message = "Selecciona el nuevo estado del jugador: \n";
 
@@ -1009,7 +1104,7 @@ public class Polipara implements Serializable {
 
         return -2;
     }
-    
+
     /**
      * Dado un nombre, busca en la lista de equipos de la copa un equipo que
      * coincida con dicho nombre
