@@ -5,11 +5,13 @@
  */
 package Polipara.Mundo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author usuario
  */
-public class Ciudad {
+public class Ciudad implements Serializable{
     private String nombre;
     private Pais pais;
 

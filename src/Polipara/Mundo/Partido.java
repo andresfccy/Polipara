@@ -1,12 +1,13 @@
 package Polipara.Mundo;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
-public class Partido {
+public class Partido implements Serializable {
 
     private Equipo anfitrion;
     private Equipo visitante;

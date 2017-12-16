@@ -1,8 +1,9 @@
 package Polipara.Mundo;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Persona {
+public class Persona implements Serializable{
     protected String nombre;
     protected String apellido;
     protected int identificacion;

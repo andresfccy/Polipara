@@ -5,11 +5,13 @@
  */
 package Polipara.Mundo;
 
+import java.io.Serializable;
+
 /**
  * Clase que modela las interacciones de un jugador en un determinado partido
  * @author usuario
  */
-public class Interaccion {
+public class Interaccion implements Serializable{
     
     // ---------------------------------------------------------------------------------------------------------
     // Constantes

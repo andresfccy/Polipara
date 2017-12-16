@@ -5,11 +5,13 @@
  */
 package Polipara.Mundo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author usuario
  */
-public class Pais {
+public class Pais implements Serializable{
     private String nombre;
 
     public Pais(String nombre) {

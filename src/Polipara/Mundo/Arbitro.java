@@ -1,5 +1,7 @@
 package Polipara.Mundo;
 
+import java.io.Serializable;
+
 public class Arbitro extends Persona {
 
     private int partidosPitados;

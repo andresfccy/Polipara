@@ -1,8 +1,8 @@
 package Polipara.Mundo;
 
-import java.util.Scanner;
+import java.io.Serializable;
 
-public class Estadio {
+public class Estadio implements Serializable{
 
     private String nombre_estadio;
     private String ciudad;

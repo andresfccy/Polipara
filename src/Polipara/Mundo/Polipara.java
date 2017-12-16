@@ -113,6 +113,10 @@ public class Polipara implements Serializable {
         ciudades.add(ciudad4);
         ciudades.add(ciudad5);
 
+        this.menuPrincipal();
+    }
+    
+    private void menuPrincipal(){
         int op = -1;
         while (op != 0) {
             // Interacción inicial con el usuario
@@ -159,7 +163,6 @@ public class Polipara implements Serializable {
                     break;
             }
         }
-
     }
 
     /**
@@ -1186,6 +1189,7 @@ public class Polipara implements Serializable {
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+        this.menuPrincipal();
     }
 
     // ---------------------------------------------------------------------------------------------------------
