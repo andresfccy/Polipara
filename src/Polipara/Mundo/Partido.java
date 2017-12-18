@@ -125,6 +125,8 @@ public class Partido implements Serializable {
             } else {
                 message += "Los equipos quedaron empatados a: " + golAnfitrion + "-" + golVisitante + " goles";
             }
+        
+            JOptionPane.showMessageDialog(null, message);
         }
     }
 

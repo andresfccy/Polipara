@@ -937,7 +937,8 @@ public class Polipara implements Serializable {
                     + "2. Registrar goles de un partido programado.\n"
                     + "3. Ver resultados de un partido.\n"
                     + "4. Registrar recaudo de un partido.\n"
-                    + "5. Registrar recuado por publicidad de un partido.\n"
+                    + "5. Registrar recaudo por publicidad de un partido.\n"
+                    + "6. Menú de interacciones de un partido.\n"
                     + "0. Menú anterior",
                     // Título y tipo de mensaje.
                     "Menú de partidos", JOptionPane.QUESTION_MESSAGE);
@@ -1047,6 +1048,15 @@ public class Polipara implements Serializable {
                         break;
                     }
                     break;
+                case 6:{
+                    Partido seleccion = this.seleccionarPartido();
+                    if(seleccion != null){
+                        this.menuInteracciones(seleccion);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Opción no válida.");
+                    }
+                    break;
+                }
             }
         }
     }
