@@ -15,42 +15,58 @@ import javax.swing.UIManager;
  * @author usuario
  */
 public class PoliparaPrincipal extends JFrame {
+
     /**
      * Clase principal del mundo
      */
     private Polipara mundo;
-    
+
     private PanelImagen panelImagen;
-    
-    public PoliparaPrincipal(){
-        setTitle( "Copa Polipara" );
-        setSize( 714, 580 );
-        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        
-        panelImagen = new PanelImagen( );
-        
-        getContentPane( ).setLayout( new BorderLayout( ) );
-        getContentPane( ).add( panelImagen, BorderLayout.NORTH );
-        
-        setLocationRelativeTo( null );
-        setResizable( false );
-        
+    private PanelOpcionesIniciales panelOpcionesIniciales;
+
+    public PoliparaPrincipal() {
+        setTitle("Copa Polipara");
+        setSize(714, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        panelImagen = new PanelImagen();
+        panelOpcionesIniciales = new PanelOpcionesIniciales(this);
+
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(panelImagen, BorderLayout.NORTH);
+        getContentPane().add(panelOpcionesIniciales, BorderLayout.CENTER);
+
+        setLocationRelativeTo(null);
+        setResizable(false);
+
         //mundo = new Polipara();
     }
-    
-    public static void main( String[] pArgs )
-    {        
-        try
-        {
+
+    public static void main(String[] pArgs) {
+        try {
             // Unifica la interfaz para Mac y para Windows.
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
-            
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+
             PoliparaPrincipal interfaz = new PoliparaPrincipal();
-            interfaz.setVisible( true );
+            interfaz.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch( Exception e )
-        {
-            e.printStackTrace( );
-        }        
-    }  
+    }
+
+    void mostrarDialogoPersonas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoEquipos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoEstadios() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoAdministrativo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
