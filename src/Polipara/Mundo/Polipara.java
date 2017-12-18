@@ -817,16 +817,16 @@ public class Polipara implements Serializable {
                     }
 
                     String partidosPitados = JOptionPane.showInputDialog(null,
-                            "Introduce el rol del nuevo árbitro: ",
+                            "Introduce los partidos pitados del nuevo árbitro: ",
                             "Creación de árbitro",
                             JOptionPane.INFORMATION_MESSAGE);
                     if (partidosPitados == null || partidosPitados.trim().equalsIgnoreCase("")) {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    int partidosPitadosNAuxiliar = -1;
+                    int partidosPitadosNArbitro = -1;
                     try {
-                        partidosPitadosNAuxiliar = Integer.parseInt(partidosPitados);
+                        partidosPitadosNArbitro = Integer.parseInt(partidosPitados);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
@@ -834,41 +834,41 @@ public class Polipara implements Serializable {
 
                     ciudadArbitro = this.seleccionarCiudad();
 
-                    Arbitro nuevo = new Arbitro(partidosPitadosNAuxiliar, nombreArbitro, apellidoArbitro, ciudadArbitro, identificacionNArbitro);
+                    Arbitro nuevo = new Arbitro(partidosPitadosNArbitro, nombreArbitro, apellidoArbitro, ciudadArbitro, identificacionNArbitro);
 
                     arbitros.add(nuevo);
 
-                    JOptionPane.showMessageDialog(null, "¡Auxiliar creado exitosamente!");
+                    JOptionPane.showMessageDialog(null, "¡Árbitro creado exitosamente!");
 
                     break;
                 case 2:
-                    PAuxiliar auxiliar2 = this.seleccionarAuxiliar();
+                    Arbitro arbitro2 = this.seleccionarArbitro();
                     String nuevoNombre = JOptionPane.showInputDialog(null,
-                            "Introduce el nombre del auxiliar: ",
-                            "Edición de auxiliar",
+                            "Introduce el nombre del árbitro: ",
+                            "Edición de árbitro",
                             JOptionPane.INFORMATION_MESSAGE);
                     if (nuevoNombre == null || nuevoNombre.trim().equalsIgnoreCase("")) {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    auxiliar2.setNombre(nuevoNombre);
+                    arbitro2.setNombre(nuevoNombre);
                     break;
                 case 3:
-                    PAuxiliar auxiliar3 = this.seleccionarAuxiliar();
+                    Arbitro arbitro3 = this.seleccionarArbitro();
                     String nuevoApellido = JOptionPane.showInputDialog(null,
-                            "Introduce el apellido del auxiliar: ",
-                            "Edición de auxiliar",
+                            "Introduce el apellido del árbitro: ",
+                            "Edición de árbitro",
                             JOptionPane.INFORMATION_MESSAGE);
                     if (nuevoApellido == null || nuevoApellido.trim().equalsIgnoreCase("")) {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                     }
-                    auxiliar3.setApellido(nuevoApellido);
+                    arbitro3.setApellido(nuevoApellido);
                     break;
                 case 4:
-                    PAuxiliar auxiliar4 = this.seleccionarAuxiliar();
+                    Arbitro arbitro4 = this.seleccionarArbitro();
                     Ciudad nuevaCiudad = this.seleccionarCiudad();
-                    auxiliar4.setNacionalidad(nuevaCiudad);
+                    arbitro4.setNacionalidad(nuevaCiudad);
                     break;
                 default:
                     break;
@@ -1180,7 +1180,7 @@ public class Polipara implements Serializable {
         } else {
             String message = "Selecciona el técnico: \n";
             for (int i = 0; i < tecnicos.size(); i++) {
-                message += (i + 1) + ". " + tecnicos.get(i).getNombre() + "\n";
+                message += (i + 1) + ". " + tecnicos.get(i).toString() + "\n";
             }
             String seleccion = JOptionPane.showInputDialog(null, message, "Selección de técnico", JOptionPane.QUESTION_MESSAGE);
 
@@ -1200,7 +1200,7 @@ public class Polipara implements Serializable {
         } else {
             String message = "Selecciona el propietario: \n";
             for (int i = 0; i < propietarios.size(); i++) {
-                message += (i + 1) + ". " + propietarios.get(i).getNombre() + "\n";
+                message += (i + 1) + ". " + propietarios.get(i).toString() + "\n";
             }
             String seleccion = JOptionPane.showInputDialog(null, message, "Selección de propietario", JOptionPane.QUESTION_MESSAGE);
 
@@ -1220,7 +1220,7 @@ public class Polipara implements Serializable {
         } else {
             String message = "Selecciona el auxiliar: \n";
             for (int i = 0; i < auxiliares.size(); i++) {
-                message += (i + 1) + ". " + auxiliares.get(i).getNombre() + "\n";
+                message += (i + 1) + ". " + auxiliares.get(i).toString() + "\n";
             }
             String seleccion = JOptionPane.showInputDialog(null, message, "Selección de auxiliar", JOptionPane.QUESTION_MESSAGE);
 
@@ -1228,6 +1228,26 @@ public class Polipara implements Serializable {
                 return (PAuxiliar) auxiliares.get(Integer.parseInt(seleccion) - 1);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error al seleccionar auxiliar.");
+            }
+        }
+        return null;
+    }
+
+    private Arbitro seleccionarArbitro() {
+        if (auxiliares.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay árbitros registrados.");
+            return null;
+        } else {
+            String message = "Selecciona el árbitro: \n";
+            for (int i = 0; i < arbitros.size(); i++) {
+                message += (i + 1) + ". " + arbitros.get(i).toString() + "\n";
+            }
+            String seleccion = JOptionPane.showInputDialog(null, message, "Selección de árbitro", JOptionPane.QUESTION_MESSAGE);
+
+            try {
+                return (Arbitro) arbitros.get(Integer.parseInt(seleccion) - 1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al seleccionar árbitro.");
             }
         }
         return null;

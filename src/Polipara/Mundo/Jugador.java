@@ -31,8 +31,4 @@ public class Jugador extends Persona {
     public void setPosicion(String posicion) {
         this.posicion = posicion;
     }
-    
-    public String toString(){
-        return this.getNombre() + " " + this.getApellido() + " Id #." + this.getIdentificacion();
-    }
 }

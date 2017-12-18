@@ -55,5 +55,7 @@ public class Persona implements Serializable{
         this.ciudad = ciudad;
     }
     
-    
+    public String toString(){
+        return this.getNombre() + " " + this.getApellido() + " Id #." + this.getIdentificacion();
+    }
 }
