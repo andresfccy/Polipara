@@ -2,6 +2,7 @@ package Polipara.Mundo;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -128,6 +129,7 @@ public class Partido implements Serializable {
     }
 
     public String toString() {
-        return this.getFechaPartido().toString() + " : " + this.getAnfitrion() + " vs " + this.getVisitante() + " en la fecha " + this.getFechaPartido().toString();
+        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(this.getFechaPartido()) + " : " + this.getAnfitrion().getNombre() + " vs " + this.getVisitante().getNombre();
     }
 }

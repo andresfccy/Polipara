@@ -26,7 +26,7 @@ public class PoliparaPrincipal extends JFrame {
 
     public PoliparaPrincipal() {
         setTitle("Copa Polipara");
-        setSize(714, 200);
+        setSize(714, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panelImagen = new PanelImagen();
@@ -54,19 +54,43 @@ public class PoliparaPrincipal extends JFrame {
         }
     }
 
-    public void mostrarDialogoPersonas() {
-        
-    }
-
-    public void mostrarDialogoEquipos() {
+    void mostrarDialogoAgregarPropietario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void mostrarDialogoEstadios() {
+    void mostrarDialogoEditarPropietario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void mostrarDialogoAdministrativo() {
+    void mostrarDialogoAgregarTecnico() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoEditarTecnico() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoAgregarJugador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoEditarJugador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoAgregarAuxiliar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoEditarAuxiliar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoAgregarArbitro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoEditarArbitro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
