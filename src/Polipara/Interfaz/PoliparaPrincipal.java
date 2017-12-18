@@ -26,7 +26,7 @@ public class PoliparaPrincipal extends JFrame {
 
     public PoliparaPrincipal() {
         setTitle("Copa Polipara");
-        setSize(714, 900);
+        setSize(800, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panelImagen = new PanelImagen();
@@ -37,7 +37,7 @@ public class PoliparaPrincipal extends JFrame {
         getContentPane().add(panelOpcionesIniciales, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);
-        setResizable(false);
+        //setResizable(false);
 
         //mundo = new Polipara();
     }
@@ -91,6 +91,34 @@ public class PoliparaPrincipal extends JFrame {
     }
 
     void mostrarDialogoEditarArbitro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void mostrarDialogoOpcionesPartidos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void listarAmarillas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void listarRojas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void listarLesionados() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void listarSuspendidos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void recaudo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void recaudoPublicidad() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

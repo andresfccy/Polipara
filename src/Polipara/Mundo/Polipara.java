@@ -1414,10 +1414,13 @@ public class Polipara implements Serializable {
     }
 
     private void listarInteracciones(int interaccion) {
-        String message = "Los jugadores con amarillas son: \n\n";
+        String message = interaccion == 0 ? "Los jugadores con amarillas son: \n\n" : 
+                interaccion == 1 ? "Los jugadores con rojas son: \\n\\n" : 
+                "Los jugadores lesionados son: \n\n";
         for (int i = 0; i < this.interacciones.size(); i++) {
             if (this.interacciones.get(i).getInteraccion() == interaccion) {
-                message += this.interacciones.get(i).toString();
+                message += this.interacciones.get(i).getJugador().toString()
+                        /*+ " " + this.interacciones.get(i).toString()*/;
             }
         }
 
