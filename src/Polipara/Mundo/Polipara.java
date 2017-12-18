@@ -1019,10 +1019,10 @@ public class Polipara implements Serializable {
                 case 4:
                     // Registrar recaudo de un partido
                     Partido seleccionRegistroRecaudo = this.seleccionarPartido();
-                    float recaudo = 0;
+                    double recaudo = 0;
                     String recaudoString = JOptionPane.showInputDialog(null, "Introduce el recaudo de este partido: ");
                     try {
-                        recaudo = Float.parseFloat(recaudoString);
+                        recaudo = Double.parseDouble(recaudoString);
                         seleccionRegistroRecaudo.setRecaudo(recaudo);
 
                         JOptionPane.showMessageDialog(null, "Se registró el recaudo para este partido correctamente.");
@@ -1035,10 +1035,10 @@ public class Polipara implements Serializable {
                 case 5:
                     // Registrar recaudo por publicidad de un partido
                     Partido seleccionRegistroPublicidad = this.seleccionarPartido();
-                    float recaudoPublicidad = 0;
+                    double recaudoPublicidad = 0;
                     String recaudoPublicidadString = JOptionPane.showInputDialog(null, "Introduce el recaudo por publicidad de este partido: ");
                     try {
-                        recaudoPublicidad = Float.parseFloat(recaudoPublicidadString);
+                        recaudoPublicidad = Double.parseDouble(recaudoPublicidadString);
                         seleccionRegistroPublicidad.setRecaudoPublicidad(recaudoPublicidad);
 
                         JOptionPane.showMessageDialog(null, "Se registró el recaudo por publicidad para este partido correctamente.");
@@ -1436,7 +1436,7 @@ public class Polipara implements Serializable {
     }
 
     private void calcularRecaudoEntreFechas() {
-        float recaudo = 0;
+        double recaudo = 0;
         String fechaInString = JOptionPane.showInputDialog(null,
                 "Escirbe la fecha inicial (dd/mm/aaaa) ej. 07/06/2017",
                 "Selección de fechas", JOptionPane.QUESTION_MESSAGE);
@@ -1468,7 +1468,7 @@ public class Polipara implements Serializable {
     }
 
     private void calcularRecaudoPorPublicidadEntreFechas() {
-        float recaudo = 0;
+        double recaudo = 0;
         String fechaInString = JOptionPane.showInputDialog(null,
                 "Escirbe la fecha inicial (dd/mm/aaaa) ej. 07/06/2017",
                 "Selección de fechas", JOptionPane.QUESTION_MESSAGE);

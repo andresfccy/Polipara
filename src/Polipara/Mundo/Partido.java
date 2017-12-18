@@ -19,8 +19,8 @@ public class Partido implements Serializable {
     private int golVisitante;
     private Date fechaPartido;
     private int estado;
-    private float recaudo;
-    private float recaudoPublicidad;
+    private double recaudo;
+    private double recaudoPublicidad;
     private Estadio estadio;
 
     public Partido(Equipo anfitrion, Equipo visitante, int golAnfitrion, int golVisitante, Date fechaPartido, int estado, Estadio estadio) {
@@ -41,19 +41,19 @@ public class Partido implements Serializable {
         this.estadio = estadio;
     }
 
-    public float getRecaudo() {
+    public double getRecaudo() {
         return recaudo;
     }
 
-    public void setRecaudo(float recaudo) {
+    public void setRecaudo(double recaudo) {
         this.recaudo = recaudo;
     }
 
-    public float getRecaudoPublicidad() {
+    public double getRecaudoPublicidad() {
         return recaudoPublicidad;
     }
 
-    public void setRecaudoPublicidad(float recaudoPublicidad) {
+    public void setRecaudoPublicidad(double recaudoPublicidad) {
         this.recaudoPublicidad = recaudoPublicidad;
     }
 
