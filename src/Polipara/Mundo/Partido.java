@@ -9,18 +9,59 @@ import javax.swing.JOptionPane;
 
 public class Partido implements Serializable {
 
+    public final static int PROGRAMADO = 0;
+    public final static int REGISTRADO = 1;
+    
     private Equipo anfitrion;
     private Equipo visitante;
     private int golAnfitrion;
     private int golVisitante;
     private Date fechaPartido;
+    private int estado;
+    private float recaudo;
+    private float recaudoPublicidad;
+    private Estadio estadio;
 
-    public Partido(Equipo anfitrion, Equipo visitante, int golAnfitrion, int golVisitante, Date fechaPartido) {
+    public Partido(Equipo anfitrion, Equipo visitante, int golAnfitrion, int golVisitante, Date fechaPartido, int estado, Estadio estadio) {
         this.anfitrion = anfitrion;
         this.visitante = visitante;
         this.golAnfitrion = golAnfitrion;
         this.golVisitante = golVisitante;
         this.fechaPartido = fechaPartido;
+        this.estado = estado;
+        this.estadio = estadio;
+    }
+
+    public Estadio getEstadio() {
+        return estadio;
+    }
+
+    public void setEstadio(Estadio estadio) {
+        this.estadio = estadio;
+    }
+
+    public float getRecaudo() {
+        return recaudo;
+    }
+
+    public void setRecaudo(float recaudo) {
+        this.recaudo = recaudo;
+    }
+
+    public float getRecaudoPublicidad() {
+        return recaudoPublicidad;
+    }
+
+    public void setRecaudoPublicidad(float recaudoPublicidad) {
+        this.recaudoPublicidad = recaudoPublicidad;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public Date getFechaPartido() {
@@ -87,6 +128,6 @@ public class Partido implements Serializable {
     }
 
     public String toString() {
-        return this.getFechaPartido().toString() + " : " + this.getAnfitrion() + " vs " + this.getVisitante();
+        return this.getFechaPartido().toString() + " : " + this.getAnfitrion() + " vs " + this.getVisitante() + " en la fecha " + this.getFechaPartido().toString();
     }
 }

@@ -40,10 +40,12 @@ public class Interaccion implements Serializable{
      */
     private Jugador jugador;
     
+    private Partido partido;
+    
     /**
      * Atributo que modela la interacción presentada con el jugador
      */
-    private String interaccion;
+    private int interaccion;
     
     /**
      * Atributo que modela si la interacción tiene comentarios adicionales
@@ -60,8 +62,10 @@ public class Interaccion implements Serializable{
      * @param pDescripcion - String, Puede ser nulo
      * @throws Exception - Si la interacción no coincide con las constantes establecidas, se lanza una excepción
      */
-    public Interaccion(Jugador pJugador, int pInteraccion, String pDescripcion) throws Exception{
+    public Interaccion(Jugador pJugador, Partido pPartido, int pInteraccion, String pDescripcion) throws Exception{
         jugador = pJugador;
+        partido = pPartido;
+        interaccion = pInteraccion;
         switch(pInteraccion){
             case 0:
                 // AMARILLA
@@ -71,9 +75,26 @@ public class Interaccion implements Serializable{
                 break;
             case 2:
                 // LESION
+                jugador.setEstado(Jugador.LESIONADO);
                 break;
             default:
                 throw new Exception("Interacción no válida");
         }
     }    
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public int getInteraccion() {
+        return interaccion;
+    }
+
+    public Partido getPartido() {
+        return partido;
+    }
+    
+    public String toString(){
+        return this.interaccion == 0 ? "le sacaron amarilla." : (this.interaccion == 1 ? "le sacaron roja." : "se lesionó.");
+    }
 }

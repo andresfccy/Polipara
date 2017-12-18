@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -56,6 +55,10 @@ public class Polipara implements Serializable {
 
     public ArrayList<Arbitro> arbitros;
 
+    public ArrayList<Interaccion> interacciones;
+
+    public ArrayList<Estadio> estadios;
+
     // ---------------------------------------------------------------------------------------------------------
     // Constructores
     // ---------------------------------------------------------------------------------------------------------
@@ -95,6 +98,8 @@ public class Polipara implements Serializable {
         ciudades = new ArrayList<Ciudad>();
         partidos = new ArrayList<Partido>();
         arbitros = new ArrayList<Arbitro>();
+        interacciones = new ArrayList<Interaccion>();
+        estadios = new ArrayList<Estadio>();
 
         // Llenar la lista de paises iniciales predeterminados
         Pais pais1 = new Pais("Colombia");
@@ -115,8 +120,8 @@ public class Polipara implements Serializable {
 
         this.menuPrincipal();
     }
-    
-    private void menuPrincipal(){
+
+    private void menuPrincipal() {
         int op = -1;
         while (op != 0) {
             // Interacción inicial con el usuario
@@ -126,6 +131,7 @@ public class Polipara implements Serializable {
                     + "1. Opciones de personas.\n"
                     + "2. Opciones de equipos.\n"
                     + "3. Opciones administrativas.\n"
+                    + "4. Opciones de estadios.\n"
                     + "0. Salir",
                     // Título y tipo de mensaje.
                     "Menú principal", JOptionPane.QUESTION_MESSAGE);
@@ -142,6 +148,9 @@ public class Polipara implements Serializable {
                 case 3:
                     // Opciones ADMINISTRATIVAS
                     this.menuAdministrativo();
+                    break;
+                case 4:
+                    this.menuEstadios();
                     break;
                 case 0:
                     // Salida
@@ -291,32 +300,25 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(seleccion);
             switch (op) {
                 case 1:
-                    // Opciones PROPIETARIOS
                     this.menuPartidos();
                     break;
                 case 2:
-                    // Opciones TECNICOS
-                    //this.listarJugadoresAmarillas();
+                    this.listarInteracciones(Interaccion.AMARILLA);
                     break;
                 case 3:
-                    // Opciones Jugadores
-                    //this.listarJugadoresRojas();
+                    this.listarInteracciones(Interaccion.ROJA);
                     break;
                 case 4:
-                    // Opciones AUXILIARES
-                    //this.listarJugadoresLesionados();
+                    this.listarInteracciones(Interaccion.LESION);
                     break;
                 case 5:
-                    // Opciones ÁRBITROS
-                    //this.listarJugadoresSuspendidos();
+                    this.listarJugadoresPorEstado(Jugador.SUSPENDIDO);
                     break;
                 case 6:
-                    // Opciones ÁRBITROS
-                    //this.calcularRecaudoEntreFechas();
+                    this.calcularRecaudoEntreFechas();
                     break;
                 case 7:
-                    // Opciones ÁRBITROS
-                    //this.calcularRecaudoPublicidadEntreFechas();
+                    this.calcularRecaudoPorPublicidadEntreFechas();
                     break;
             }
         }
@@ -877,15 +879,17 @@ public class Polipara implements Serializable {
     private void menuPartidos() {
         int op = -1;
         while (op != 0) {
-            String selArbitros = JOptionPane.showInputDialog(null, ""
+            String selPartidos = JOptionPane.showInputDialog(null, ""
                     // Opciones
                     + "1. Programar partido.\n"
-                    + "2. Registrar resultados de un partido programado.\n"
+                    + "2. Registrar goles de un partido programado.\n"
                     + "3. Ver resultados de un partido.\n"
+                    + "4. Registrar recaudo de un partido.\n"
+                    + "5. Registrar recuado por publicidad de un partido.\n"
                     + "0. Menú anterior",
                     // Título y tipo de mensaje.
                     "Menú de partidos", JOptionPane.QUESTION_MESSAGE);
-            op = Integer.parseInt(selArbitros);
+            op = Integer.parseInt(selPartidos);
             switch (op) {
                 case 1:
                     Date fechaDatePartido = null;
@@ -897,7 +901,7 @@ public class Polipara implements Serializable {
 
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaPartido = JOptionPane.showInputDialog(null, "Introduce la fecha del encuentro (dd/mm/aaaa):");
-                    
+
                     try {
                         fechaDatePartido = formatter.parse(fechaPartido);
                     } catch (Exception e) {
@@ -905,17 +909,184 @@ public class Polipara implements Serializable {
                         System.out.println(e.getMessage());
                         break;
                     }
-                    
-                    Partido nuevo = new Partido(anfitrion, visitante, 0, 0, fechaDatePartido);
-                    
+
+                    Estadio estadioNuevo = this.seleccionarEstadio();
+
+                    Partido nuevo = new Partido(anfitrion, visitante, 0, 0, fechaDatePartido, Partido.PROGRAMADO, estadioNuevo);
+
+                    this.partidos.add(nuevo);
+
                     JOptionPane.showMessageDialog(null, "¡Partido programado exitosamente!");
 
                     break;
                 case 2:
+                    Partido seleccionGoles = this.seleccionarPartido();
+                    switch (seleccionGoles.getEstado()) {
+                        case Partido.PROGRAMADO: {
+                            int golesAnfitrion = 0;
+                            String golesAnfString = JOptionPane.showInputDialog(null, "Introduce los goles del anfitrión: ");
+
+                            try {
+                                golesAnfitrion = Integer.parseInt(golesAnfString);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "Ocurrió un problema al intentar guardar los goles del anfitrión.");
+                                System.out.println(e.getMessage());
+                                break;
+                            }
+
+                            int golesVisitante = 0;
+                            String golesVisString = JOptionPane.showInputDialog(null, "Introduce los goles del visitante: ");
+
+                            try {
+                                golesVisitante = Integer.parseInt(golesAnfString);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "Ocurrió un problema al intentar guardar los goles del visitante.");
+                                System.out.println(e.getMessage());
+                                break;
+                            }
+
+                            seleccionGoles.setGolAnfitrion(golesAnfitrion);
+                            seleccionGoles.setGolVisitante(golesVisitante);
+                            seleccionGoles.setEstado(Partido.REGISTRADO);
+
+                            JOptionPane.showMessageDialog(null, "Se registraron los goles de este partido exitosamente.");
+                            break;
+                        }
+                        case Partido.REGISTRADO: {
+                            JOptionPane.showMessageDialog(null, "Ya se habían registrado los goles de este partido.");
+                            break;
+                        }
+                    }
 
                     break;
                 case 3:
+                    Partido seleccionVer = this.seleccionarPartido();
+                    seleccionVer.mostrarDatosPartido();
+                    break;
+                case 4:
+                    // Registrar recaudo de un partido
+                    Partido seleccionRegistroRecaudo = this.seleccionarPartido();
+                    float recaudo = 0;
+                    String recaudoString = JOptionPane.showInputDialog(null, "Introduce el recaudo de este partido: ");
+                    try {
+                        recaudo = Float.parseFloat(recaudoString);
+                        seleccionRegistroRecaudo.setRecaudo(recaudo);
 
+                        JOptionPane.showMessageDialog(null, "Se registró el recaudo para este partido correctamente.");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ocurrió un problema al intentar guardar el recaudo de este partido.");
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    break;
+                case 5:
+                    // Registrar recaudo por publicidad de un partido
+                    Partido seleccionRegistroPublicidad = this.seleccionarPartido();
+                    float recaudoPublicidad = 0;
+                    String recaudoPublicidadString = JOptionPane.showInputDialog(null, "Introduce el recaudo por publicidad de este partido: ");
+                    try {
+                        recaudoPublicidad = Float.parseFloat(recaudoPublicidadString);
+                        seleccionRegistroPublicidad.setRecaudoPublicidad(recaudoPublicidad);
+
+                        JOptionPane.showMessageDialog(null, "Se registró el recaudo por publicidad para este partido correctamente.");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ocurrió un problema al intentar guardar el recaudo por publicidad de este partido.");
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Método que muestra el menú de opciones de las interacciones
+     *
+     * @param partido - El partido del que se quieren listar las interacciones,
+     * en caso de que sea null, al listar las interacciones de un jugador, se
+     * traerán todas las interacciones del jugador de todos los partidos.
+     */
+    private void menuInteracciones(Partido partido) {
+        int op = -1;
+        while (op != 0) {
+            String selInteracciones = JOptionPane.showInputDialog(null, ""
+                    // Opciones
+                    + "1. Registrar interacción (Amarillas, Rojas, Lesiones).\n"
+                    + "2. Listar interacciones de un jugador.\n"
+                    + "0. Menú anterior",
+                    // Título y tipo de mensaje.
+                    "Menú de interacciones", JOptionPane.QUESTION_MESSAGE);
+            op = Integer.parseInt(selInteracciones);
+            switch (op) {
+                case 1:
+                    int interaccionRegistro = -1;
+                    if (partido == null) {
+                        partido = this.seleccionarPartido();
+                    }
+                    Jugador jugadorSeleccionado = this.seleccionarJugador();
+
+                    String interSeleccionada = JOptionPane.showInputDialog(null, "Selecciona una interacción para este jugador en este partido: \n"
+                            + "1. Amarilla.\n"
+                            + "2. Roja.\n"
+                            + "3. Lesión.\n",
+                            "Selecciona de interacción");
+                    try {
+                        interaccionRegistro = Integer.parseInt(interSeleccionada);
+                        Interaccion nuevaInteraccion = new Interaccion(jugadorSeleccionado, partido, interaccionRegistro, "");
+
+                        this.interacciones.add(nuevaInteraccion);
+
+                        JOptionPane.showMessageDialog(null, "¡Interacción registrada exitosamente!");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ocurrió un problema al intentar guardar la interacción.");
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    break;
+                case 2:
+                    Jugador seleccionadoJugadorInteracciones = this.seleccionarJugador();
+
+                    String message = "Las interacciones de " + seleccionadoJugadorInteracciones.getNombre() + " " + seleccionadoJugadorInteracciones + " son:\n";
+
+                    ArrayList<Interaccion> interaccionesJugador = this.bucsarInteraccionesPorJugador(seleccionadoJugadorInteracciones, partido);
+
+                    for (int i = 0; i < interaccionesJugador.size(); i++) {
+                        message += interaccionesJugador.get(i).toString() + "\n";
+                    }
+
+                    JOptionPane.showMessageDialog(null, message);
+                    break;
+            }
+        }
+    }
+
+    private void menuEstadios() {
+        int op = -1;
+        while (op != 0) {
+            String selEstadios = JOptionPane.showInputDialog(null, ""
+                    // Opciones
+                    + "1. Registrar estadio.\n"
+                    + "2. Listar estadios.\n"
+                    + "0. Menú anterior",
+                    // Título y tipo de mensaje.
+                    "Menú de estadios", JOptionPane.QUESTION_MESSAGE);
+            op = Integer.parseInt(selEstadios);
+            switch (op) {
+                case 1:
+                    Ciudad ciudadSel = this.seleccionarCiudad();
+
+                    String nombreEstadio = JOptionPane.showInputDialog("Introduce el nombre del estadio");
+                    Estadio nuevo = new Estadio(nombreEstadio, ciudadSel);
+                    estadios.add(nuevo);
+
+                    JOptionPane.showMessageDialog(null, "Se registró el estadio correctamente.");
+                    break;
+                case 2:
+                    String message = "Los estadios registrados en la plataforma son:\n\n";
+                    for (int i = 0; i < this.estadios.size(); i++) {
+                        message += this.estadios.get(i).toString();
+                    }
+                    JOptionPane.showMessageDialog(null, message);
                     break;
             }
         }
@@ -1082,6 +1253,26 @@ public class Polipara implements Serializable {
         return null;
     }
 
+    private Estadio seleccionarEstadio() {
+        if (estadios.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay partidos registrados.");
+            return null;
+        } else {
+            String message = "Selecciona el estadio: \n";
+            for (int i = 0; i < estadios.size(); i++) {
+                message += (i + 1) + ". " + estadios.get(i).toString() + "\n";
+            }
+            String seleccion = JOptionPane.showInputDialog(null, message, "Selección de estadios", JOptionPane.QUESTION_MESSAGE);
+
+            try {
+                return (Estadio) estadios.get(Integer.parseInt(seleccion) - 1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al seleccionar estadio.");
+            }
+        }
+        return null;
+    }
+
     private int seleccionarEstado() {
         String message = "Selecciona el nuevo estado del jugador: \n";
 
@@ -1123,6 +1314,107 @@ public class Polipara implements Serializable {
             }
         }
         return null;
+    }
+
+    private ArrayList<Interaccion> bucsarInteraccionesPorJugador(Jugador jugador, Partido partido) {
+        ArrayList<Interaccion> respuesta = new ArrayList<Interaccion>();
+        for (int i = 0; i < interacciones.size(); i++) {
+            if (interacciones.get(i).getJugador().getIdentificacion() == jugador.getIdentificacion()) {
+                if (partido == null) {
+                    respuesta.add(interacciones.get(i));
+                } else if (partido.toString().equalsIgnoreCase(interacciones.get(i).getPartido().toString())) {
+                    respuesta.add(interacciones.get(i));
+                }
+            }
+        }
+
+        return respuesta;
+    }
+
+    private void listarInteracciones(int interaccion) {
+        String message = "Los jugadores con amarillas son: \n\n";
+        for (int i = 0; i < this.interacciones.size(); i++) {
+            if (this.interacciones.get(i).getInteraccion() == interaccion) {
+                message += this.interacciones.get(i).toString();
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+    private void listarJugadoresPorEstado(int estado) {
+        String message = "Los jugadores suspendidos son: \n\n";
+        for (int i = 0; i < this.jugadores.size(); i++) {
+            if (((Jugador) this.jugadores.get(i)).getEstado() == estado) {
+                message += this.jugadores.get(i).toString();
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+    private void calcularRecaudoEntreFechas() {
+        float recaudo = 0;
+        String fechaInString = JOptionPane.showInputDialog(null,
+                "Escirbe la fecha inicial (dd/mm/aaaa) ej. 07/06/2017",
+                "Selección de fechas", JOptionPane.QUESTION_MESSAGE);
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaIn = formatter.parse(fechaInString);
+
+            String fechaFnString = JOptionPane.showInputDialog(null,
+                    "Escirbe la fecha inicial (dd/mm/aaaa) ej. 07/06/2017",
+                    "Selección de fechas", JOptionPane.QUESTION_MESSAGE);
+            try {
+                Date fechaFn = formatter.parse(fechaFnString);
+                
+                for (int i = 0; i < partidos.size(); i++) {
+                    if(partidos.get(i).getFechaPartido().after(fechaIn) && partidos.get(i).getFechaPartido().before(fechaFn)){
+                        recaudo += partidos.get(i).getRecaudo();
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Hubo un error al intentar procesar la fecha final.");
+                System.out.println(e.getMessage());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Hubo un error al intentar procesar la fecha inicial.");
+            System.out.println(e.getMessage());
+        }
+        
+        JOptionPane.showMessageDialog(null, "El recaudo de estas fechas en todos los partidos fue: " + recaudo);
+    }
+
+    private void calcularRecaudoPorPublicidadEntreFechas() {
+        float recaudo = 0;
+        String fechaInString = JOptionPane.showInputDialog(null,
+                "Escirbe la fecha inicial (dd/mm/aaaa) ej. 07/06/2017",
+                "Selección de fechas", JOptionPane.QUESTION_MESSAGE);
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaIn = formatter.parse(fechaInString);
+
+            String fechaFnString = JOptionPane.showInputDialog(null,
+                    "Escirbe la fecha inicial (dd/mm/aaaa) ej. 07/06/2017",
+                    "Selección de fechas", JOptionPane.QUESTION_MESSAGE);
+            try {
+                Date fechaFn = formatter.parse(fechaFnString);
+                
+                for (int i = 0; i < partidos.size(); i++) {
+                    if(partidos.get(i).getFechaPartido().after(fechaIn) && partidos.get(i).getFechaPartido().before(fechaFn)){
+                        recaudo += partidos.get(i).getRecaudoPublicidad();
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Hubo un error al intentar procesar la fecha final.");
+                System.out.println(e.getMessage());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Hubo un error al intentar procesar la fecha inicial.");
+            System.out.println(e.getMessage());
+        }
+        
+        JOptionPane.showMessageDialog(null, "El recaudo de estas fechas en todos los partidos fue: " + recaudo);
     }
 
     // ---------------------------------------------------------------------------------------------------------

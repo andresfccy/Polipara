@@ -38,4 +38,22 @@ public class Persona implements Serializable{
     public void setNacionalidad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
+
+    public int getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+    
+    
 }
