@@ -1146,7 +1146,7 @@ public class Polipara implements Serializable {
                 case 2:
                     String message = "Los estadios registrados en la plataforma son:\n\n";
                     for (int i = 0; i < this.estadios.size(); i++) {
-                        message += this.estadios.get(i).toString();
+                        message += this.estadios.get(i).toString() + "\n";
                     }
                     JOptionPane.showMessageDialog(null, message);
                     break;
