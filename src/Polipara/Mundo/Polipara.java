@@ -224,6 +224,42 @@ public class Polipara implements Serializable {
                         }
                     }
                     break;
+                case 3:
+                    if(propietarios.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Es necesario registrar propietarios primero.");
+                    }else{
+                        Equipo equipo3 = this.seleccionaEquipo();
+                        Persona propietario = this.seleccionarPropietario();
+                        
+                        equipo3.setPropietario((Propietario)propietario);
+                        JOptionPane.showMessageDialog(null, "¡Propietario registrado a este equipo exitosamente!");
+                    }
+                    break;
+                case 4:
+                   if(tecnicos.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Es necesario registrar técnicos primero.");
+                    }else{
+                        Equipo equipo4 = this.seleccionaEquipo();
+                        Persona tecnico = this.seleccionarTecnico();
+                        
+                        equipo4.setTecnico((Tecnico)tecnico);
+                        JOptionPane.showMessageDialog(null, "¡Técnico registrado a este equipo exitosamente!");
+                    }
+                    break;
+                case 5:
+                   if(jugadores.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Es necesario registrar jugadores primero.");
+                    }else{
+                        Equipo equipo5 = this.seleccionaEquipo();
+                        Persona jugador = this.seleccionarJugador();
+                        
+                        ArrayList<Jugador> listaJugadores = equipo5.getJugadores();
+                        listaJugadores.add((Jugador)jugador);
+                        
+                        equipo5.setJugadores(listaJugadores);
+                        JOptionPane.showMessageDialog(null, "¡Jugador registrado a este equipo exitosamente!");
+                    }
+                    break;
                 default:
                     break;
             }
