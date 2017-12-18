@@ -54,19 +54,19 @@ public class PoliparaPrincipal extends JFrame {
         }
     }
 
-    void mostrarDialogoPersonas() {
+    public void mostrarDialogoPersonas() {
+        
+    }
+
+    public void mostrarDialogoEquipos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void mostrarDialogoEquipos() {
+    public void mostrarDialogoEstadios() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void mostrarDialogoEstadios() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void mostrarDialogoAdministrativo() {
+    public void mostrarDialogoAdministrativo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

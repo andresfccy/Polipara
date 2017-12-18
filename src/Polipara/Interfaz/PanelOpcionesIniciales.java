@@ -5,6 +5,7 @@
  */
 package Polipara.Interfaz;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -23,6 +24,11 @@ public class PanelOpcionesIniciales extends JPanel implements ActionListener{
     
     private PoliparaPrincipal principal;
     
+    private JPanel opcionesPersonas;
+    private JPanel opcionesEquipos;
+    private JPanel opcionesEstadios;
+    private JPanel opacionesAdministrativas;
+    
     private JButton btnPersonas;
     private JButton btnEquipos;
     private JButton btnEstadios;
@@ -32,6 +38,17 @@ public class PanelOpcionesIniciales extends JPanel implements ActionListener{
         principal = pPrincipal;
         
         setBorder( new TitledBorder( "Opciones de la copa" ) );
+        
+        setLayout(new BorderLayout());
+        
+        opcionesPersonas = new JPanel();
+        opcionesPersonas.setBorder( new TitledBorder( "Opciones de personas" ) );
+        opcionesEquipos = new JPanel();
+        opcionesEquipos.setBorder( new TitledBorder( "Opciones de equipos" ) );
+        opcionesEstadios = new JPanel();
+        opcionesEstadios.setBorder( new TitledBorder( "Opciones de estadios" ) );
+        opacionesAdministrativas = new JPanel();
+        opacionesAdministrativas.setBorder( new TitledBorder( "Opciones administrativas" ) );
         
         btnPersonas = new JButton( OPCIONES_PERSONAS );
         btnPersonas.setActionCommand( OPCIONES_PERSONAS );

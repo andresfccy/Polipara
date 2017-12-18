@@ -51,6 +51,8 @@ public class Equipo implements Serializable{
      */
     public Equipo(String nombre) {
         this.nombre = nombre;
+        jugadores = new ArrayList<Jugador>();
+        auxiliares = new ArrayList<PAuxiliar>();
     }
     
     // ---------------------------------------------------------------------------------------------------------

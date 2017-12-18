@@ -189,6 +189,7 @@ public class Polipara implements Serializable {
                     + "3. Agregar propietario del equipo.\n"
                     + "4. Agregar técnico del equipo.\n"
                     + "5. Agregar jugador al equipo.\n"
+                    + "6. Agregar auxiliar al equipo.\n"
                     + "0. Menú anterior",
                     // Título y tipo de mensaje.
                     "Menú de equipos", JOptionPane.QUESTION_MESSAGE);
@@ -260,6 +261,21 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "¡Jugador registrado a este equipo exitosamente!");
                     }
                     break;
+                case 6: {
+                   if(auxiliares.isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Es necesario registrar jugadores auxiliares.");
+                    }else{
+                        Equipo equipo5 = this.seleccionaEquipo();
+                        Persona auxiliar = this.seleccionarAuxiliar();
+                        
+                        ArrayList<PAuxiliar> listaAuxiliares = equipo5.getAuxiliares();
+                        listaAuxiliares.add((PAuxiliar)auxiliar);
+                        
+                        equipo5.setAuxiliares(listaAuxiliares);
+                        JOptionPane.showMessageDialog(null, "¡Auxiliar registrado a este equipo exitosamente!");
+                    }
+                    break;
+                }
                 default:
                     break;
             }
