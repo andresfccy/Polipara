@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * Clase que modela los equipos
  * @author usuario
  */
 public class Equipo implements Serializable{

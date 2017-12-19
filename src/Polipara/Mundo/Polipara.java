@@ -196,6 +196,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selEquipos);
             switch (op) {
                 case 1:
+                    // Agrega un equipo con su nombre
                     String nombreEquipo = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del nuevo equipo: ",
                             "Creación de equipo",
@@ -214,6 +215,7 @@ public class Polipara implements Serializable {
                     }
                     break;
                 case 2:
+                    // Edita el nombre de un equipo
                     Equipo equipo2 = this.seleccionaEquipo();
                     String nuevoNombre = JOptionPane.showInputDialog(null, "Introduce el nuevo nombre para el equipo " + equipo2.getNombre() + ": ");
                     if (nuevoNombre != null && !nuevoNombre.trim().equals("")) {
@@ -226,6 +228,7 @@ public class Polipara implements Serializable {
                     }
                     break;
                 case 3:
+                    // Agrega un propietario de la lista de propietarios a un equipo
                     if(propietarios.isEmpty()){
                         JOptionPane.showMessageDialog(null, "Es necesario registrar propietarios primero.");
                     }else{
@@ -237,6 +240,7 @@ public class Polipara implements Serializable {
                     }
                     break;
                 case 4:
+                     // Agrega un tecnico de la lista de tecnicos a un equipo
                    if(tecnicos.isEmpty()){
                         JOptionPane.showMessageDialog(null, "Es necesario registrar técnicos primero.");
                     }else{
@@ -248,6 +252,7 @@ public class Polipara implements Serializable {
                     }
                     break;
                 case 5:
+                     // Agrega un jugador de la lista de jugadores a un equipo
                    if(jugadores.isEmpty()){
                         JOptionPane.showMessageDialog(null, "Es necesario registrar jugadores primero.");
                     }else{
@@ -261,9 +266,11 @@ public class Polipara implements Serializable {
                         JOptionPane.showMessageDialog(null, "¡Jugador registrado a este equipo exitosamente!");
                     }
                     break;
-                case 6: {
+                case 6: 
+                 // Agrega personal auxiliar de la lista de personal auxiliar a un equipo
+                {
                    if(auxiliares.isEmpty()){
-                        JOptionPane.showMessageDialog(null, "Es necesario registrar jugadores auxiliares.");
+                        JOptionPane.showMessageDialog(null, "Es necesario registrar personal auxiliar.");
                     }else{
                         Equipo equipo5 = this.seleccionaEquipo();
                         Persona auxiliar = this.seleccionarAuxiliar();
@@ -352,24 +359,31 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(seleccion);
             switch (op) {
                 case 1:
+                     // muestra el menu partidos
                     this.menuPartidos();
                     break;
                 case 2:
+                     // Lista los jugadores con tarjeta amarilla
                     this.listarInteracciones(Interaccion.AMARILLA);
                     break;
                 case 3:
+                    // Lista los jugadores con tarjeta roja
                     this.listarInteracciones(Interaccion.ROJA);
                     break;
                 case 4:
+                    // Lista los jugadores que se encuentran lesionados
                     this.listarInteracciones(Interaccion.LESION);
                     break;
                 case 5:
+                    // Lista los jugadores que se enceuntran suspendidos
                     this.listarJugadoresPorEstado(Jugador.SUSPENDIDO);
                     break;
                 case 6:
+                    // muestra el resultado del calculo de recaudos en un rango de fechas
                     this.calcularRecaudoEntreFechas();
                     break;
                 case 7:
+                    // muestra el resultado del calculo de recaudos por publicidad en un rango de fechas
                     this.calcularRecaudoPorPublicidadEntreFechas();
                     break;
             }
@@ -377,7 +391,8 @@ public class Polipara implements Serializable {
     }
 
     /**
-     * Método que muestra el menú de opciones para jugadores
+     * Método que muestra el menú de opciones para jugadores, en este menu se pede agregar,
+     * editar los datos de un jugador
      */
     private void menuJugadores() {
         int op = -1;
@@ -396,6 +411,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selJugadores);
             switch (op) {
                 case 1:
+                    // Agrega un nuevo jugador con su nombre, apellido, ID y posición
                     Ciudad ciudadJugador = null;
                     String nombreJugador = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del nuevo jugador: ",
@@ -448,6 +464,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 2:
+                    // Edita el nombre de un jugador al seleccionarlo
                     Jugador jugador2 = this.seleccionarJugador();
                     String nuevoNombre = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del jugador: ",
@@ -460,6 +477,7 @@ public class Polipara implements Serializable {
                     jugador2.setNombre(nuevoNombre);
                     break;
                 case 3:
+                     // Edita el apellido de un jugador al seleccionarlo
                     Jugador jugador3 = this.seleccionarJugador();
                     String nuevoApellido = JOptionPane.showInputDialog(null,
                             "Introduce el apellido del jugador: ",
@@ -472,11 +490,13 @@ public class Polipara implements Serializable {
                     jugador3.setApellido(nuevoApellido);
                     break;
                 case 4:
+                     // Edita la ciudad de un jugador al seleccionarlo
                     Jugador jugador4 = this.seleccionarJugador();
                     Ciudad nuevaCiudad = this.seleccionarCiudad();
                     jugador4.setNacionalidad(nuevaCiudad);
                     break;
                 case 5:
+                    // Edita la posicion de un jugador al seleccionarlo
                     Jugador jugador5 = this.seleccionarJugador();
                     String nuevaPosicion = JOptionPane.showInputDialog(null,
                             "Introduce la posición del jugador: ",
@@ -489,6 +509,7 @@ public class Polipara implements Serializable {
                     jugador5.setPosicion(nuevaPosicion);
                     break;
                 case 6:
+                    // Edita el estado (activo o suspendido) de un jugador al seleccionarlo
                     Jugador jugador6 = this.seleccionarJugador();
                     int nuevoEstado = this.seleccionarEstado();
 
@@ -499,7 +520,10 @@ public class Polipara implements Serializable {
             }
         }
     }
-
+    /**
+     * Método que muestra el menú de opciones para los propietarios, en este menu se pede agregar,
+     * editar los datos de un propietario
+     */
     private void menuPropietarios() {
         int op = -1;
         while (op != 0) {
@@ -515,6 +539,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selPropietarios);
             switch (op) {
                 case 1:
+                    // agrega a un propietario con su nombre, apellido,ID y ciudad
                     Ciudad ciudadPropietario = null;
                     String nombrePropietario = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del nuevo propietario: ",
@@ -558,6 +583,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 2:
+                    // Edita el nombre de un propietario al seleccionarlo
                     Propietario propietario2 = this.seleccionarPropietario();
                     String nuevoNombre = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del propietario: ",
@@ -570,6 +596,7 @@ public class Polipara implements Serializable {
                     propietario2.setNombre(nuevoNombre);
                     break;
                 case 3:
+                    // Edita el apellido de un propietario al seleccionarlo
                     Propietario propietario3 = this.seleccionarPropietario();
                     String nuevoApellido = JOptionPane.showInputDialog(null,
                             "Introduce el apellido del propietario: ",
@@ -582,6 +609,7 @@ public class Polipara implements Serializable {
                     propietario3.setApellido(nuevoApellido);
                     break;
                 case 4:
+                    // Edita la ciudad de un propietario al seleccionarlo
                     Propietario propietario4 = this.seleccionarPropietario();
                     Ciudad nuevaCiudad = this.seleccionarCiudad();
                     propietario4.setNacionalidad(nuevaCiudad);
@@ -592,6 +620,10 @@ public class Polipara implements Serializable {
         }
     }
 
+    /**
+     * Método que muestra el menú de opciones para Tecnicos, en este menu se pede agregar,
+     * editar los datos e historial de un tecnico
+     */
     private void menuTecnicos() {
         int op = -1;
         while (op != 0) {
@@ -607,6 +639,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selTecnicos);
             switch (op) {
                 case 1:
+                    // agrega un nuevo tecnico con sus datos personales e historial
                     Ciudad ciudadTecnico = null;
                     String nombreTecnico = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del nuevo técnico: ",
@@ -683,6 +716,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 2:
+                    // Edita el nombre de un tecnico al seleccionarlo
                     Tecnico tecnico2 = this.seleccionarTecnico();
                     String nuevoNombre = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del técnico: ",
@@ -695,6 +729,7 @@ public class Polipara implements Serializable {
                     tecnico2.setNombre(nuevoNombre);
                     break;
                 case 3:
+                     // Edita el apellido de un tecnico al seleccionarlo
                     Tecnico tecnico3 = this.seleccionarTecnico();
                     String nuevoApellido = JOptionPane.showInputDialog(null,
                             "Introduce el apellido del técnico: ",
@@ -707,6 +742,7 @@ public class Polipara implements Serializable {
                     tecnico3.setApellido(nuevoApellido);
                     break;
                 case 4:
+                     // Edita la ciudad de un tecnico al seleccionarlo
                     Tecnico tecnico4 = this.seleccionarTecnico();
                     Ciudad nuevaCiudad = this.seleccionarCiudad();
                     tecnico4.setNacionalidad(nuevaCiudad);
@@ -717,6 +753,10 @@ public class Polipara implements Serializable {
         }
     }
 
+    /**
+     * Método que muestra el menú de opciones para el Personal Auxiliar, en este menu se pede agregar,
+     * editar los datos del personal auxiliar( masajistas, fisioterapeutas, medicos)
+     */
     private void menuAuxiliares() {
         int op = -1;
         while (op != 0) {
@@ -732,6 +772,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selAuxiliares);
             switch (op) {
                 case 1:
+                     // Agrega los datos de una persona auxiliar incluyendo su rol (masajista, fisioterapeuta,medico)
                     Ciudad ciudadAuxiliar = null;
                     String nombreAuxiliar = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del nuevo auxiliar: ",
@@ -785,6 +826,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 2:
+                     // Edita el nombre de un auxiliar al seleccionarlo
                     PAuxiliar auxiliar2 = this.seleccionarAuxiliar();
                     String nuevoNombre = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del auxiliar: ",
@@ -797,6 +839,7 @@ public class Polipara implements Serializable {
                     auxiliar2.setNombre(nuevoNombre);
                     break;
                 case 3:
+                     // Edita el apellido de un auxiliar al seleccionarlo
                     PAuxiliar auxiliar3 = this.seleccionarAuxiliar();
                     String nuevoApellido = JOptionPane.showInputDialog(null,
                             "Introduce el apellido del auxiliar: ",
@@ -809,6 +852,7 @@ public class Polipara implements Serializable {
                     auxiliar3.setApellido(nuevoApellido);
                     break;
                 case 4:
+                     // Edita la ciudad de un auxiliar al seleccionarlo
                     PAuxiliar auxiliar4 = this.seleccionarAuxiliar();
                     Ciudad nuevaCiudad = this.seleccionarCiudad();
                     auxiliar4.setNacionalidad(nuevaCiudad);
@@ -819,6 +863,10 @@ public class Polipara implements Serializable {
         }
     }
 
+    /**
+     * Método que muestra el menú de opciones para Arbitros, en este menu se pede agregar,
+     * editar los datos e historial en la copa de los arbitros.
+     */
     private void menuArbitros() {
         int op = -1;
         while (op != 0) {
@@ -834,6 +882,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selArbitros);
             switch (op) {
                 case 1:
+                     // crea un Arbitro con sus datos personales y su historial
                     Ciudad ciudadArbitro = null;
                     String nombreArbitro = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del nuevo árbitro: ",
@@ -894,6 +943,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 2:
+                     // Edita el nombre de un arbitro al seleccionarlo
                     Arbitro arbitro2 = this.seleccionarArbitro();
                     String nuevoNombre = JOptionPane.showInputDialog(null,
                             "Introduce el nombre del árbitro: ",
@@ -906,6 +956,7 @@ public class Polipara implements Serializable {
                     arbitro2.setNombre(nuevoNombre);
                     break;
                 case 3:
+                    // Edita el apellido de un arbitro al seleccionarlo
                     Arbitro arbitro3 = this.seleccionarArbitro();
                     String nuevoApellido = JOptionPane.showInputDialog(null,
                             "Introduce el apellido del árbitro: ",
@@ -918,6 +969,7 @@ public class Polipara implements Serializable {
                     arbitro3.setApellido(nuevoApellido);
                     break;
                 case 4:
+                    // Edita la ciudad de un arbitro al seleccionarlo
                     Arbitro arbitro4 = this.seleccionarArbitro();
                     Ciudad nuevaCiudad = this.seleccionarCiudad();
                     arbitro4.setNacionalidad(nuevaCiudad);
@@ -927,7 +979,10 @@ public class Polipara implements Serializable {
             }
         }
     }
-
+    /**
+     * Método que muestra el menú de opciones para los partidos, en este menu se pede programar un partido,
+     * registrar los resultados del partido y los recaudos
+     */
     private void menuPartidos() {
         int op = -1;
         while (op != 0) {
@@ -945,6 +1000,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selPartidos);
             switch (op) {
                 case 1:
+                    // programar un partido 
                     Date fechaDatePartido = null;
                     JOptionPane.showMessageDialog(null, "A continuación se listarán los equipos, selecciona el equipo anfitrión.");
                     Equipo anfitrion = seleccionaEquipo();
@@ -973,6 +1029,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 2:
+                    // Registrar los resultados de un partido
                     Partido seleccionGoles = this.seleccionarPartido();
                     switch (seleccionGoles.getEstado()) {
                         case Partido.PROGRAMADO: {
@@ -1013,6 +1070,7 @@ public class Polipara implements Serializable {
 
                     break;
                 case 3:
+                     // Ver resultados de un partido
                     Partido seleccionVer = this.seleccionarPartido();
                     seleccionVer.mostrarDatosPartido();
                     break;
@@ -1048,7 +1106,9 @@ public class Polipara implements Serializable {
                         break;
                     }
                     break;
-                case 6:{
+                case 6:
+                // muestra el menu de interacciones de un partido
+                {
                     Partido seleccion = this.seleccionarPartido();
                     if(seleccion != null){
                         this.menuInteracciones(seleccion);
@@ -1081,6 +1141,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selInteracciones);
             switch (op) {
                 case 1:
+                    // registra una interaccion seleccionando un jugador de la lista
                     int interaccionRegistro = -1;
                     if (partido == null) {
                         partido = this.seleccionarPartido();
@@ -1106,6 +1167,7 @@ public class Polipara implements Serializable {
                     }
                     break;
                 case 2:
+                    // Lista los jugadores, el usuario selecciona el jugador, en caso de tarjeta amarilla, roja o lesion
                     Jugador seleccionadoJugadorInteracciones = this.seleccionarJugador();
 
                     String message = "Las interacciones de " + seleccionadoJugadorInteracciones.getNombre() + " " + seleccionadoJugadorInteracciones + " son:\n";
@@ -1122,6 +1184,10 @@ public class Polipara implements Serializable {
         }
     }
 
+     /**
+     * Método que muestra el menú de opciones para los estadios, en este menu se pede registrar
+     * y ver los datos de los estadios
+     */
     private void menuEstadios() {
         int op = -1;
         while (op != 0) {
@@ -1135,6 +1201,7 @@ public class Polipara implements Serializable {
             op = Integer.parseInt(selEstadios);
             switch (op) {
                 case 1:
+                    // Registra el nombre y la ciudad donde se encuentra el estadio
                     Ciudad ciudadSel = this.seleccionarCiudad();
 
                     String nombreEstadio = JOptionPane.showInputDialog("Introduce el nombre del estadio");
@@ -1144,6 +1211,7 @@ public class Polipara implements Serializable {
                     JOptionPane.showMessageDialog(null, "Se registró el estadio correctamente.");
                     break;
                 case 2:
+                    // Muestra una lista de todos los estadios registrados
                     String message = "Los estadios registrados en la plataforma son:\n\n";
                     for (int i = 0; i < this.estadios.size(); i++) {
                         message += this.estadios.get(i).toString() + "\n";
@@ -1153,7 +1221,10 @@ public class Polipara implements Serializable {
             }
         }
     }
-
+    /**
+     * Método que muestra la lista de los jugadores registrados para que el usuario los seleccione
+     * 
+     */
     private Jugador seleccionarJugador() {
         if (jugadores.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay jugadores registrados.");
@@ -1194,7 +1265,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  muestra la lista de los equipos registrados para que el usuario los seleccione
+     */
     private Equipo seleccionaEquipo() {
         if (equipos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay equipos registrados.");
@@ -1214,7 +1287,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  lista las ciudades registradas en el programa para que el usuario las seleccione
+     */
     private Ciudad seleccionarCiudad() {
         if (ciudades.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay ciudades registradas.");
@@ -1234,7 +1309,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+     /**
+     *  lista los tecnicos registrados para que el usuario los seleccione
+     */
     private Tecnico seleccionarTecnico() {
         if (tecnicos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay tecnicos registradas.");
@@ -1254,7 +1331,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  lista los propietarios registrados para que el usuario los seleccione
+     */
     private Propietario seleccionarPropietario() {
         if (propietarios.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay propietarios registrados.");
@@ -1274,7 +1353,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  lista las personas del persona auxiliar registrados para que el usuario los seleccione
+     */
     private PAuxiliar seleccionarAuxiliar() {
         if (auxiliares.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay auxiliares registrados.");
@@ -1294,7 +1375,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  lista los arbitros registrados para que el usuario los seleccione
+     */
     private Arbitro seleccionarArbitro() {
         if (auxiliares.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay árbitros registrados.");
@@ -1314,7 +1397,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  lista los partidos registrados para que el usuario los seleccione
+     */
     private Partido seleccionarPartido() {
         if (partidos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay partidos registrados.");
@@ -1334,7 +1419,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  lista los estadios registrados para que el usuario los seleccione
+     */
     private Estadio seleccionarEstadio() {
         if (estadios.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay partidos registrados.");
@@ -1354,7 +1441,9 @@ public class Polipara implements Serializable {
         }
         return null;
     }
-
+    /**
+     *  metodo que muestra los estados que se le pueden asignar a un jugador 
+     */
     private int seleccionarEstado() {
         String message = "Selecciona el nuevo estado del jugador: \n";
 
@@ -1412,7 +1501,9 @@ public class Polipara implements Serializable {
 
         return respuesta;
     }
-
+    /**
+     *  lista los jugadores segun la interaccion 
+     */
     private void listarInteracciones(int interaccion) {
         String message = interaccion == 0 ? "Los jugadores con amarillas son: \n\n" : 
                 interaccion == 1 ? "Los jugadores con rojas son: \\n\\n" : 
@@ -1426,7 +1517,9 @@ public class Polipara implements Serializable {
 
         JOptionPane.showMessageDialog(null, message);
     }
-
+    /**
+     *  lista los jugadores segun el estado en que se encuentren
+     */
     private void listarJugadoresPorEstado(int estado) {
         String message = "Los jugadores suspendidos son: \n\n";
         for (int i = 0; i < this.jugadores.size(); i++) {
@@ -1437,7 +1530,9 @@ public class Polipara implements Serializable {
 
         JOptionPane.showMessageDialog(null, message);
     }
-
+    /**
+     *  Metodo que realiza el calculo del recaudo segun un rango de fechas
+     */
     private void calcularRecaudoEntreFechas() {
         double recaudo = 0;
         String fechaInString = JOptionPane.showInputDialog(null,
@@ -1469,7 +1564,9 @@ public class Polipara implements Serializable {
         
         JOptionPane.showMessageDialog(null, "El recaudo de estas fechas en todos los partidos fue: " + recaudo);
     }
-
+    /**
+     *  Metodo que calcula el recaudo por publicidad segun un rango de fechas
+     */
     private void calcularRecaudoPorPublicidadEntreFechas() {
         double recaudo = 0;
         String fechaInString = JOptionPane.showInputDialog(null,
