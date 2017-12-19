@@ -60,6 +60,7 @@ public class Interaccion implements Serializable{
      * @param pJugador - Jugador, no puede ser nulo
      * @param pInteraccion - int, Tiene que ser un valor modelado en las constantes de esta misma clase
      * @param pDescripcion - String, Puede ser nulo
+     * @param pPartido - String , Partido  no puede ser nulo
      * @throws Exception - Si la interacción no coincide con las constantes establecidas, se lanza una excepción
      */
     public Interaccion(Jugador pJugador, Partido pPartido, int pInteraccion, String pDescripcion) throws Exception{
@@ -81,15 +82,24 @@ public class Interaccion implements Serializable{
                 throw new Exception("Interacción no válida");
         }
     }    
-
+    /**
+     * Método que obtiene un jugador
+     * @return String - jugador
+     */
     public Jugador getJugador() {
         return jugador;
     }
-
+    /**
+     * Método que obtiene interacciones
+     * @return String - interaccion
+     */
     public int getInteraccion() {
         return interaccion;
     }
-
+     /**
+     * Método que obtiene los partidos
+     * @return String - partido
+     */
     public Partido getPartido() {
         return partido;
     }

@@ -54,7 +54,10 @@ public class Estadio implements Serializable{
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
-
+     /**
+     * Método que obtiene el pais donde se encuentra el estadio
+     * @return String - pais donde se encuentra el estadio
+     */
     public Pais getPais() {
         return this.ciudad.getPais();
     }

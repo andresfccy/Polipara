@@ -12,7 +12,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-
+/**
+     * Clase que modela la copa
+     */
 public class Polipara implements Serializable {
 
     // ---------------------------------------------------------------------------------------------------------
@@ -46,17 +48,29 @@ public class Polipara implements Serializable {
      * Lista de equipos que participan en la copa Polipara.
      */
     public ArrayList<Persona> auxiliares;
-
+    /**
+     * Lista de personas auxiliares que participan en la copa Polipara.
+     */
     public ArrayList<Persona> jugadores;
-
+    /**
+     * Lista de las ciudades.
+     */
     public ArrayList<Ciudad> ciudades;
-
+    /**
+     * Lista de partidos que se realizaran en a copa polipara.
+     */
     public ArrayList<Partido> partidos;
-
+    /**
+     * Lista de arbitros participan en la copa Polipara.
+     */
     public ArrayList<Arbitro> arbitros;
-
+     /**
+     * Lista de interacciones de los jugadores en los partidos.
+     */
     public ArrayList<Interaccion> interacciones;
-
+     /**
+     * Lista de estadios que participan en la copa Polipara.
+     */
     public ArrayList<Estadio> estadios;
 
     // ---------------------------------------------------------------------------------------------------------
